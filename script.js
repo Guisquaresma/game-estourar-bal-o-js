@@ -31,14 +31,30 @@ function addBola2() {
 	document.body.appendChild(bola2); /*Pegar conteudo do site e adicionar um elemento novo*/	
 }
 
-function estourar2(elemento){
-	if (document.body.removeChild(elemento)){
-		alert("Você perdeu! \n Reinicie o jogo");
-	}
+
+function estourar2(elemento) {
+    if (document.body.removeChild(elemento)) {
+        document.body.style.backgroundColor = "red";
+
+        var mensagem = document.createElement("div");
+        mensagem.innerHTML = "<h1>Você perdeu! <br> Reinicie o jogo</h1>";
+        mensagem.style.position = "fixed";
+        mensagem.style.top = "50%";
+        mensagem.style.left = "50%";
+        mensagem.style.color = "white";
+        mensagem.style.backgroundColor = "black";
+        mensagem.style.padding = "20px";
+        mensagem.style.borderRadius = "10px";
+        mensagem.style.textAlign = "center";
+
+        document.body.appendChild(mensagem);
+
+        clearInterval(intervaloBola);
+        clearInterval(intervaloBola2);
+    }
 }
 
 function iniciar() { /* De tempo em tempo executara função*/
 	setInterval(addBola, 500); /*1000 = 1 Segundo*/
 	setInterval(addBola2, 5000);
 }
-
